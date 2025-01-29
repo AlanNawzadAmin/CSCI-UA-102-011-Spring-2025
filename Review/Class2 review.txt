@@ -1,0 +1,19 @@
+
+- Abstract classes -
+In what situation would you need an abstract class?
+Given an abstract class, MyAbstractClass, will the following code run?
+	MyAbstractClass cl = new MyAbstractClass();
+If a subclass inherits from an abstract class, what code must it contain to avoid a compiler error?
+In what situation would you need an interface instead of an abstract class?
+In what situation would you need an abstract class instead of an interface?
+
+- Lists -
+What is a generic? Why might you want to use one?
+When you define a class, how do you indicate that it is a generic?
+What were some of the methods that we decided we wanted to implement in a list ADT?
+
+- ArrayLists -
+What were the methods we implemented for ArrayList?
+Try and write out the method addFirst in your notebook.
+If an ArrayList has size n, roughly how many computations must it perform in addFirst? How about in addLast?
+What were the issues with this implementation of List?
