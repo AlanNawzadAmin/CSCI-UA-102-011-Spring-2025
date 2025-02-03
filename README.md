@@ -34,6 +34,46 @@ Reading: First part of Chapter 7.2, Chapter 3.2.
 
 LinkedList practice.
 
-In textbook: code fragments 3.19. Qs 3.5, 6, 9, 12, 17, 18, 25, 26, 28
+In textbook: code fragments 3.19. Qs 3.5, 6, 9, 12, 17, 18, 25, 28
+
+
+### Class 4, Feb 3
+
+Doubly Linked Lists.
+
+Reading: Chapter 3.2, 3.4.
+
+### Class 5, Feb 5
+
+Position lists. 
+
+Reading: Chapter 7.3, 4.1-4.3, 5.1.3
+
+### Section 3, Feb 7
+#### Quiz 1 (Doubly linked lists)
+
+Doubly Linked Lists and position lists
+
+In textbook: Qs 3.8, 11, 16, 26, 31, 32 (look at the cartoons in section 3.3), 35. 7.11-14, 36-40, 42, 43, 46, 47
+
+### Class 6, Feb 10
+#### Assignment 1 (Dynamic arrays)  due
+
+Algorithmic complexity.
+
+Reading: Chapter 4.1-4.3,
+
+### Class 7, Feb 12
+
+Stacks and Queues
+
+Reading: Chapter 6 up to and including 6.2.3, but not including 6.2.2.
+
+### Section 4, Feb 14
+#### Quiz 2 (Stacks and queues)
+
+Stacks, queues, and algorithmic complexity
+
+In textbook: Qs 4.2, 3, 6, 8-19, 22-24, 29-32, 45, 54, 56; 6.1, 3-5, 7, 9, 17, 19, 21, 23, 24; and 
 
 
