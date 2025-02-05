@@ -1,0 +1,9 @@
+
+- LinkedLists -
+What was the issue with SinglyLinkedList that DoublyLinkedList solves?
+Write out the Node class in DoublyLinkedList in your notebook -- what are its methods and attributes?
+Draw a diagram of the steps in E remove(Node<E> node) and void addBetween(E e, Node<E> predecessor, Node<E> successor).
+
+-- PositionLists --
+Write out a method that takes in a doubly linked list and prints out every element. How many computations must this code perform?
+Write a new, efficient method for DoublyLinkedList that does the same thing. How much more efficient is this implementation?
