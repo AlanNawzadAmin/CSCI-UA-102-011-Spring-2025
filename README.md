@@ -77,3 +77,22 @@ Stacks, queues, and algorithmic complexity
 In textbook: Qs 4.2, 3, 6, 8-19, 22-24, 29-32, 45, 54, 56; 6.1, 3-5, 7, 9, 17, 19, 21, 23, 24; and 
 
 
+### Class 8, Feb 18 (Note we meet on Tuesday!)
+#### Assignment 2 (Iterators and Priority Queues) due
+
+Recursion
+Reading: Chapter 5.1-4
+
+### Class 9, Feb 19
+
+Trees definition, implementation, calculating height and depth
+
+Reading: Chapter 8.1, 8.3
+
+### Section 5, Feb 21
+#### Quiz 3 (Recursion)
+
+Recursion and trees
+
+In textbook: Qs 5.1, 2, 7, 8, 11, 15-22, 24. 8.1, 2, 4, 5, 11, 12, 13, 18, 19, 20, 22, 23, 27, 28 (hint: use an auxiliary variable in a recursive method), 32, 37, 42, 45, 55, 58.
+
