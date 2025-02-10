@@ -1,0 +1,9 @@
+
+-- Position Lists --
+When do we want to use interfaces?
+Why do we define abstract data types using interfaces?
+Why can printing every element in a List ADT be hard? Is it always hard?
+Why did we define PositionLists?
+What methods do PositionLists have?
+How did we implement PositionList?
+Why is printing every element with a PositionList easy?
