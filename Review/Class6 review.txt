@@ -1,7 +1,7 @@
 
 -- Algorithmic Analysis --
 What does f(n) = O(g(n)) mean?
-Name a method that is O(1), O(log(n)), O(n), and O(n^2).
+Name a method which has worst case asymptotic computational complexity O(1), O(log(n)), O(n), and O(n^2).
 
 -- Search --
 How did regular and binary search work?

@@ -50,7 +50,7 @@ Position lists.
 Reading: Chapter 7.3, 4.1-4.3, 5.1.3
 
 ### Section 3, Feb 7
-#### Quiz 1 (Doubly linked lists)
+#### Quiz 1 (Doubly linked lists and Position lists)
 
 Doubly Linked Lists and position lists
 
@@ -70,7 +70,7 @@ Stacks and Queues
 Reading: Chapter 6 up to and including 6.2.3, but not including 6.2.2.
 
 ### Section 4, Feb 14
-#### Quiz 2 (Stacks and queues)
+#### Quiz 2 (Stacks and queues and complexity)
 
 Stacks, queues, and algorithmic complexity
 
