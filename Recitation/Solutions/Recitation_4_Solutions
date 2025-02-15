@@ -9,7 +9,7 @@ public static int example5(int[ ] first, int[ ] second) {
                 total += first[k];
             }
         }
-        if (second[i] == total) count++; // Constant time operation
+        if (second[i] == total) count++; 
     }
     return count;
 }
