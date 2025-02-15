@@ -20,17 +20,17 @@ We have 3 nested loops here. Thus, the time complexity is O(n^3).
 
 5 2 + 8 3 − ∗ 4 /
 
-Operation         Stack   
-Push (5)	         [5]
-Push (2)	       [5, 2]
-Pop + Push	       [7]
-Push (8)	       [7, 8]
-Push (3)	      [7, 8, 3]
+Operation        Stack   
+Push (5)	      [5]
+Push (2)	     [5, 2]
+Pop + Push	      [7]
+Push (8)	     [7, 8]
+Push (3)	   [7, 8, 3]
 Pop + Push	     [7, 5]
 Pop + Push	      [35]
-Push (4)	       [35, 4]
+Push (4)	     [35, 4]
 Pop + Push 	       [8]
-End 		           [8]
+End 		       [8]
 
 Code:
 
