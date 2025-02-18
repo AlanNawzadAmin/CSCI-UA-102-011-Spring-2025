@@ -1,5 +1,6 @@
 package LinkedList_final;
 
+
 // Adapted from Goodrich textbook
 public class LinkedList<E> {
 	private static class Node<E> {
@@ -71,8 +72,25 @@ public class LinkedList<E> {
 		return false;
 	}
 	
-//	public E removeLast()
-	
+	public E removeLast() {
+		if (size == 0)
+			return null;
+		E answer = tail.getElement();
+		if (size==1) {
+			head = null;
+			tail = null;
+		}
+		else {
+			Node<E> second_to_last = head;
+			for(int i=0; i<size-2; i++) {
+				second_to_last = second_to_last.getNext();
+			}
+			second_to_last.setNext(null);
+			tail = second_to_last;
+		}
+		size--;
+		return answer;
+	}
 	public static void main(String [] args) {
 		LinkedList<Integer> list = new LinkedList();
 		list.addLast(3);

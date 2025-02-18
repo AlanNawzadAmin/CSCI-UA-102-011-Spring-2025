@@ -1,7 +1,7 @@
 package LinkedList_final;
 
 
-public class DoublyLinkedList<E> implements PositionList<E>{
+public class DoublyLinkedList<E> extends PositionList<E>{
 	private static class Node<E> implements Position<E>{
 		private E element;
 		private Node<E> prev;
@@ -129,6 +129,19 @@ public class DoublyLinkedList<E> implements PositionList<E>{
 		return remove(node);
 	}
 	
+	public Position<E>[] swap(Position<E> p1, Position<E> p2) {
+		E e1 = p1.getElement();
+		E e2 = p2.getElement();
+		addAfter(p2, e1);
+		addAfter(p1, e2);
+		Position<E> new_p1 = after(p2);
+		Position<E> new_p2 = after(p1);
+		remove(p1);
+		remove(p2);
+		Position<E>[] result = (Position<E>[]) new Position[]{new_p1, new_p2};
+		return result;
+	}
+	
 //	public void pprint() {
 //		Node<E> current_node = header.next;
 //		while(current_node.getElement() != null) {
@@ -149,6 +162,10 @@ public class DoublyLinkedList<E> implements PositionList<E>{
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(p.getElement());
 			p = list.after(p);
+		};
+		
+		for(Integer element: list) {
+			System.out.println(element);
 		};
 //		list.pprint();
 	}

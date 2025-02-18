@@ -74,7 +74,7 @@ Reading: Chapter 6 up to and including 6.2.3, but not including 6.2.2.
 
 Stacks, queues, and algorithmic complexity
 
-In textbook: Qs 4.2, 3, 6, 8-19, 22-24, 29-32, 45, 54, 56; 6.1, 3-5, 7, 9, 17, 19, 21, 23, 24; and 
+In textbook: Qs 4.2, 3, 6, 8-19, 22-24, 29-32, 45, 54, 56; 6.1, 3-5, 7, 9, 17, 19, 21, 23, 24.
 
 
 ### Class 8, Feb 18 (Note we meet on Tuesday!)
@@ -92,7 +92,53 @@ Reading: Chapter 8.1, 8.3
 ### Section 5, Feb 21
 #### Quiz 3 (Recursion)
 
+Recursion and recursion in trees
+
+In textbook: Qs 5.1, 2, 7, 8, 11, 15-22, 24. 
+8.1, 2, 4, 28 (hint: use an auxiliary variable in a recursive method), 32, 37, 55.
+
+
+### Class 10, Feb 24
+
+Searching, positions(), and intro to Binary trees.
+
+Reading: Chapter 8.2 - 8.4
+
+### Class 11, Feb 26
+
+Arithmetic trees, Traversals
+
+Reading: 8.2, 8.4, 10.1
+
+### Section 6, Feb 28
+#### Quiz 4 (Positions and traversals of trees)
+
 Recursion and trees
 
-In textbook: Qs 5.1, 2, 7, 8, 11, 15-22, 24. 8.1, 2, 4, 5, 11, 12, 13, 18, 19, 20, 22, 23, 27, 28 (hint: use an auxiliary variable in a recursive method), 32, 37, 42, 45, 55, 58.
+In textbook: 8.5, 11, 12, 13, 18, 19, 20, 22, 23, 27, 42, 45, 58.
+
+### Class 12, Mar 3
+
+Map ADT, Unsorted list implementation.
+
+Reading: Chapter 10.1.
+
+### Class 13, Mar 5
+
+Hash functions and hashmaps.
+
+Reading: 10.2, 11.1
+
+### Section 7, Mar 7
+
+#### Quiz 5 (Maps)
+
+TBD
+
+### Class 14, Mar 10
+
+#### Midterm (two-sided cheat sheet allowed)
+
+
+
 
