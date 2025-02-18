@@ -1,0 +1,189 @@
+#2.10
+
+1. Code Duplication/Reduced reusability and scalability: Here the common functionalities might need to be duplicated across subclasses. Also, it becomes harder to create new classes without repeating logic, affecting both the scalability of the design and overall efficiency.
+
+2. Class/Memory Overhead: Each subclass would need to maintain its own individual implementation of additional features, increasing memory overhead due to possibly duplicated or redundant structures.
+
+#2.11
+
+md.printMe() - md is declared as State, but it refers to a Maryland object(Output: Read it)
+east.printMe() - east is declared as Region, but it refers to a State object(Output: Ship it)
+((Place) obj).printMe() - obj refers to a Place object(Output: Buy it)
+obj = md; ((Maryland) obj).printMe() - obj is cast to Maryland, and its printMe() method is called(Output: Read it)
+obj = usa; ((Place) obj).printMe() - The printMe() method of Region is invoked due to runtime polymorphism(Output: Box it)
+usa = md; ((Place) usa).printMe() - Maryland extends State, which extends Region, which extends Place. The printMe() method of Maryland is invoked(Output: Read it)
+
+Final Output: 
+
+Read it.
+Ship it.
+Buy it.
+Read it.
+Box it.
+Read it.
+
+#2.12
+
+Object — (Base/Parent Class)
+
+Goat (Parent - Object, Var - tail, Methods - milk(), jump())
+Pig (Parent - Object, Var - nose, Methods - eat(food), wallow())
+Horse (Parent - Object, Var - height, color, Methods - run(), jump()) — (Parent for Racer and Equestrian)
+Racer (Parent - Horse, Method - race())
+Equestrian (Parent - Horse, Var -  weight, is_Trained,Method - trot(), isTrained())
+
+#2.13
+
+The cast is not allowed because Equestrian and Racer are siblings and both extend to Horse(parent), and there is no inheritance relationship directly linking them. Attempting to cast an Equestrian object to Racer would result in a runtime exception.
+
+#2.17
+
+Here is a simple code:
+
+public class SimpleCode{
+    public static void main(String[] args) {
+        run();
+    }
+
+    public static void run() {
+        int x = 10;
+        int y = 100;
+
+        if (x > y) {  
+            System.out.println("This will never execute.");
+        }
+
+        System.out.println("End of method.");
+    }
+}
+
+The line System.out.println("This will never execute."); will never run, but Java compilers won’t flag it as unreachable because the logic depends on runtime conditions.
+
+#2.21
+
+class A {
+    protected int x;  // A’s — x
+
+    public A(int x) {
+        this.x = x;
+    }
+}
+
+class B extends A {
+    protected int x;  // B's — x
+
+    public B(int xA, int xB) {
+        super(xA);  // Initialize A's — x
+        this.x = xB;
+    }
+}
+
+class C extends B {
+    protected int x;  // C's — x
+
+    public C(int xA, int xB, int xC) {
+        super(xA, xB);  // Initialize A, B’s — x
+        this.x = xC;
+    }
+
+    public void modify(int value) {
+        super.super.x = value;  // Access A's — x 
+
+#2.24
+
+public class DiffProgression extends Progression {
+    private long previous; 
+
+    //Default constructor 
+    public AbsoluteDifferenceProgression() {
+        this(2, 200);
+    }
+
+    //Parametric constructor
+    public DiffProgression(long first, long second) {
+        super(first); 
+        this.previous = second; 
+    }
+
+    @Override
+    protected void advance() {
+        long next = Math.abs(current - previous); // Calculate absolute difference
+        previous = current; // Update previous value
+        current = next; // Move to the next value
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Default Progression (2, 200):");
+        DiffProgression defaultProg = new DiffProgression();
+        defaultProg.printProgression(10);  //2 198 196 2 194 192 2 190 188 2
+
+        System.out.println("Custom Progression (10, 3):");
+        DiffProgression customProg = new DifferenceProg(10, 3);
+        customProg.printProgression(10); //10 7 3 4 1 3 2 1 1 0
+    }
+}
+
+#2.27
+
+Code for Abstract Generic Progression Class
+
+import java.math.BigInteger;
+
+public abstract class Progression<T> {
+    protected T current;
+
+    public Progression(T start) {
+        current = start;
+    }
+
+    public T nextValue() {
+        T answer = current;
+        advance();  // Move to the next value
+        return answer;
+    }
+
+    protected abstract void advance();
+
+    public void printProgression(int n) {
+        System.out.print(nextValue());
+        for (int j = 1; j < n; j++) {
+            System.out.print(" " + nextValue());
+        }
+        System.out.println();
+    }
+}
+
+Code for Fibonacci Progression using BigInteger
+
+import java.math.BigInteger;
+
+public class FibonacciProgression extends Progression<BigInteger> {
+    private BigInteger previous;
+
+    public FibonacciProgression() {
+        this(BigInteger.ZERO, BigInteger.ONE);
+    }
+
+    public FibonacciProgression(BigInteger first, BigInteger second) {
+        super(first);  // Initialize current value
+        previous = second.subtract(first);  
+    }
+
+    @Override
+    protected void advance() {
+        BigInteger next = previous.add(current);  // F(n) = F(n-1) + F(n-2)
+        previous = current;  // Shift previous to current
+        current = next;  // Update current
+    }
+
+    //main method
+    public static void main(String[] args) {
+        System.out.println("First 20 Fibonacci numbers:");
+        FibonacciProgression fibProg = new FibonacciProgression();
+        fibProg.printProgression(20); //0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181
+
+        System.out.println("Custom Fibonacci sequence (5, 8) first 10 terms:");
+        FibonacciProgression customFibProg = new FibonacciProgression(BigInteger.valueOf(5), BigInteger.valueOf(8));
+        customFibProg.printProgression(10); //5 8 13 21 34 55 89 144 233 377
+    }
+}

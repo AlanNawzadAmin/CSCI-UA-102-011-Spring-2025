@@ -1,0 +1,191 @@
+#4.13
+
+public static int example5(int[ ] first, int[ ] second) { 
+    int n = first.length, count = 0;
+    for (int i=0; i < n; i++) { // Loop 1: runs n times
+        int total = 0;
+        for (int j=0; j < n; j++) { // Loop 2: runs n times
+            for (int k=0; k <= j; k++) { // Loop 3: runs (j + 1) times
+                total += first[k];
+            }
+        }
+        if (second[i] == total) count++; 
+    }
+    return count;
+}
+
+We have 3 nested loops here. Thus, the time complexity is O(n^3).
+
+#6.19
+
+5 2 + 8 3 − ∗ 4 /
+
+Operation        Stack   
+Push (5)	      [5]
+Push (2)	     [5, 2]
+Pop + Push	      [7]
+Push (8)	     [7, 8]
+Push (3)	   [7, 8, 3]
+Pop + Push	     [7, 5]
+Pop + Push	      [35]
+Push (4)	     [35, 4]
+Pop + Push 	       [8]
+End 		       [8]
+
+Code:
+
+import java.util.Stack;
+
+public class PostfixEvaluator {
+    public static int evaluatePostfix(String expression) {
+        Stack<Integer> stack = new Stack<>();
+        String[] tokens = expression.split(" ");
+
+        for (String token : tokens) {
+            if (token.matches("\\d+")) { 
+                stack.push(Integer.parseInt(token));
+            } else { 
+                int b = stack.pop(); 
+                int a = stack.pop(); 
+                
+                switch (token) {
+                    case "+": stack.push(a + b); break;
+                    case "-": stack.push(a - b); break;
+                    case "*": stack.push(a * b); break;
+                    case "/": stack.push(a / b); break;
+                }
+            }
+        }
+        return stack.pop(); 
+    }
+
+    public static void main(String[] args) {
+        String postfixExpression = "5 2 + 8 3 - * 4 /";
+        System.out.println("Result: " + evaluatePostfix(postfixExpression));   // 8
+    }
+}
+
+#6.20
+
+R = (1, 2, 3)
+S = (4, 5)
+T = (6, 7, 8, 9)
+
+Pop and Push into R
+
+R = (1, 2, 3, 5, 4)
+S = ()
+T = (6, 7, 8, 9)
+
+Pop and Push into R
+
+R = (1, 2, 3, 5, 4, 9, 8, 7, 6)
+S = ()
+T = ()
+
+Pop and Push into S
+
+R = (1, 2, 3)
+S = (6, 7, 8, 9, 4, 5)
+T = ()
+
+Code:
+
+import java.util.Stack;
+
+public class StackTransfer {
+    public static void transferTtoS(Stack<Integer> R, Stack<Integer> S, Stack<Integer> T) {
+        while (!T.isEmpty()) {
+            R.push(T.pop());
+        }
+
+        while (!R.isEmpty()) {
+            S.push(R.pop());
+        }
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> R = new Stack<>();
+        R.push(1);
+        R.push(2);
+        R.push(3);
+
+        Stack<Integer> S = new Stack<>();
+        S.push(4);
+        S.push(5);
+
+        Stack<Integer> T = new Stack<>();
+        T.push(6);
+        T.push(7);
+        T.push(8);
+        T.push(9);
+
+        System.out.println("Initial Stacks:");
+        System.out.println("R: " + R);
+        System.out.println("S: " + S);
+        System.out.println("T: " + T);
+
+#6.24
+
+S = (top → bottom) [5, 3, 7, 2, 8]
+Q = ()
+
+Search for x = 7
+
+Pop 5 → Q = (5)
+Pop 3 → Q = (5, 3)
+Pop 7 → Q = (5, 3, 7)  (Found x!)
+Pop 2 → Q = (5, 3, 7, 2)
+Pop 8 → Q = (5, 3, 7, 2, 8)
+S = ()
+
+Dequeue 5 → Push to S → S = (5)
+Dequeue 3 → Push to S → S = (5, 3)
+Dequeue 7 → Push to S → S = (5, 3, 7)
+Dequeue 2 → Push to S → S = (5, 3, 7, 2)
+Dequeue 8 → Push to S → S = (5, 3, 7, 2, 8)
+Q = ()
+
+Code:
+
+import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
+
+public class StackScanner {
+    public static boolean containsElement(Stack<Integer> S, int x) {
+        Queue<Integer> Q = new LinkedList<>();
+        boolean found = false;
+
+        while (!S.isEmpty()) {
+            int element = S.pop();
+            if (element == x) {
+                found = true; // Mark True: if x is found
+            }
+            Q.add(element);
+        }
+
+        while (!Q.isEmpty()) {
+            S.push(Q.poll());
+        }
+
+        return found; 
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> S = new Stack<>();
+        S.push(5);
+        S.push(3);
+        S.push(7);
+        S.push(2);
+        S.push(8); // S = [1, 2, 7, 3, 5]
+
+        int x = 7; 
+
+        boolean result = containsElement(S, x);
+        System.out.println("Element " + x + (result ? " found" : " not found") + " in stack.");
+
+        System.out.println("Stack after search: " + S);
+    }
+}
+

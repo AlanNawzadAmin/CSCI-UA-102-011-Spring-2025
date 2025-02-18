@@ -1,0 +1,218 @@
+#3.16
+
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true; 
+    if (!(obj instanceof DoublyLinkedList)) return false; 
+
+    DoublyLinkedList<?> other = (DoublyLinkedList<?>) obj; 
+    if (this.size != other.size) return false; 
+
+    Node<E> currentA = this.header.getNext(); 
+    Node<?> currentB = other.header.getNext(); //other list
+
+    while (currentA != this.trailer && currentB != other.trailer) { 
+        if (!currentA.getElement().equals(currentB.getElement())) {
+            return false; 
+        }
+        currentA = currentA.getNext();
+        currentB = currentB.getNext();
+    }
+
+    return true; 
+}
+
+#3.26
+
+public void concatenate(DoublyLinkedList<E> M) {
+    if (M.isEmpty()) return; 
+    if (this.isEmpty()) { 
+        this.header.setNext(M.header.getNext());
+        M.header.getNext().setPrev(this.header);
+        this.trailer.setPrev(M.trailer.getPrev());
+        M.trailer.getPrev().setNext(this.trailer);
+        this.size = M.size;
+        return;
+    }
+
+    Node<E> L_last = this.trailer.getPrev(); 
+    Node<E> M_first = M.header.getNext(); 
+    Node<E> M_last = M.trailer.getPrev(); 
+
+    L_last.setNext(M_first);
+    M_first.setPrev(L_last);
+
+    M_last.setNext(this.trailer);
+    this.trailer.setPrev(M_last);
+
+    this.size += M.size;
+
+    // Clear M to avoid accidental use (optional)
+    M.header.setNext(M.trailer);
+    M.trailer.setPrev(M.header);
+    M.size = 0;
+}
+
+#3.31
+
+public class DoublyLinkedList<E> {
+    
+    private static class Node<E> {
+        private E element;
+        private Node<E> prev;
+        private Node<E> next;
+
+        public Node(E e, Node<E> p, Node<E> n) {
+            element = e;
+            prev = p;
+            next = n;
+        }
+
+        public E getElement() { return element; }
+        public Node<E> getPrev() { return prev; }
+        public Node<E> getNext() { return next; }
+        public void setPrev(Node<E> p) { prev = p; }
+        public void setNext(Node<E> n) { next = n; }
+    }
+
+    private Node<E> sentinel; 
+    private int size = 0;
+
+    public DoublyLinkedList() {
+        sentinel = new Node<>(null, null, null);
+        sentinel.setNext(sentinel); 
+        sentinel.setPrev(sentinel);
+    }
+
+    public int size() { return size; }
+
+    public boolean isEmpty() { return size == 0; }
+
+    public E first() {
+        if (isEmpty()) return null;
+        return sentinel.getNext().getElement();
+    }
+
+    public E last() {
+        if (isEmpty()) return null;
+        return sentinel.getPrev().getElement();
+    }
+
+    public void addFirst(E e) {
+        addBetween(e, sentinel, sentinel.getNext());
+    }
+
+    public void addLast(E e) {
+        addBetween(e, sentinel.getPrev(), sentinel);
+    }
+
+    public E removeFirst() {
+        if (isEmpty()) return null;
+        return remove(sentinel.getNext());
+    }
+
+    public E removeLast() {
+        if (isEmpty()) return null;
+        return remove(sentinel.getPrev());
+    }
+
+    private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
+        Node<E> newNode = new Node<>(e, predecessor, successor);
+        predecessor.setNext(newNode);
+        successor.setPrev(newNode);
+        size++;
+    }
+
+    private E remove(Node<E> node) {
+        Node<E> predecessor = node.getPrev();
+        Node<E> successor = node.getNext();
+        predecessor.setNext(successor);
+        successor.setPrev(predecessor);
+        size--;
+        return node.getElement();
+    }
+}
+
+#7.11
+
+1. Add Last
+
+public void addLast(E e) {
+    if (isEmpty()) {
+        addFirst(e); 
+    } else {
+        addAfter(last(), e); 
+    }
+}
+
+2. Add before
+
+public void addBefore(Position<E> p, E e) {
+    Position<E> predecessor = before(p); 
+
+    if (predecessor == null) {
+        addFirst(e); 
+    } else {
+        addAfter(predecessor, e); 
+    }
+}
+
+#7.12
+
+public int indexOf(Position<E> p) {
+    int index = 0; 
+    Position<E> current = first(); 
+
+    while (current != null) { 
+        if (current == p) {
+            return index; 
+        }
+        current = after(current); 
+        index++;
+    }
+
+    return -1; 
+}
+
+#7.13
+
+public Position<E> findPosition(E e) {
+    Position<E> current = first(); 
+
+    while (current != null) { 
+        if (current.getElement().equals(e)) {
+            return current; 
+        }
+        current = after(current); 
+    }
+
+    return null; 
+}
+
+#7.36
+
+public Position<E> positionAtIndex(int i) {
+    if (i < 0 || i >= size()) {
+        throw new IndexOutOfBoundsException("Index " + i + " is out of bounds");
+    }
+
+    Position<E> current = first(); 
+
+    for (int count = 0; count < i; count++) {
+        current = after(current); 
+    }
+
+    return current; 
+}
+
+#7.39
+
+public void moveToFront(Position<E> p) {
+    if (p == first()) {
+        return; 
+    }
+
+    E element = p.getElement(); 
+    remove(p); 
+    addFirst(element); 
+}

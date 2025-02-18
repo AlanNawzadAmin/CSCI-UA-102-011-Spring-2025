@@ -1,0 +1,246 @@
+#3.5
+
+Lines 51 and 52 ensure that the tail pointer is correctly reset when the list becomes empty. Without these lines, the list might not behave correctly, leading to logical errors and potential memory inefficiencies. Therefore, these lines should be retained to maintain the correct functionality of the SinglyLinkedList class.
+
+#3.6
+
+public class SinglyLinkedList<E> {
+    private static class Node<E> {
+        private E element;
+        private Node<E> next;
+        
+        public Node(E e, Node<E> n) {
+            element = e;
+            next = n;
+        }
+        
+        public Node<E> getNext() { 
+		return next; 
+        }
+        public E getElement() { 
+		return element; 
+        }
+    }
+    
+    private Node<E> head = null;
+    
+    public Node<E> findSecondToLast() {
+        if (head == null || head.next == null) {
+            return null; // For no second-to-last node exists
+        }
+        
+        Node<E> current = head;
+        while (current.next.next != null) { 
+	  // Stop before the last node
+            current = current.next;
+        }
+        return current; // Second-to-last node
+    }
+}
+
+#3.9
+
+public int size() {
+    int count = 0;
+    Node<E> current = head; 
+    while (current != null) { 
+        count++;
+        current = current.next;
+    }
+    return count; 
+}
+
+#3.12
+
+public void rotate() {
+    if (head == null || head.next == null) return; 
+
+    Node<E> oldHead = head; 
+    head = head.next; 
+    oldHead.next = null; 
+
+    tail.next = oldHead; 
+    tail = oldHead; 
+}
+
+#3.17
+
+Arrays.sort(A);
+for (int i = 1; i < A.length; i++) {
+    if (A[i] == A[i - 1]) return A[i];
+}
+
+(You can also implement this solution with Floyd’s Algorithm)
+
+#3.18
+
+public class FindMultipleDuplicates {
+    public static List<Integer> findDuplicates(int[] B, int n) {
+        int[] freq = new int[n - 4]; 
+        List<Integer> duplicates = new ArrayList<>();
+
+        for (int num : B) {
+            freq[num]++;
+            if (freq[num] == 2) { 
+                duplicates.add(num);
+                if (duplicates.size() == 5) break; 
+            }
+        }
+
+        return duplicates;
+    }
+
+    public static void main(String[] args) {
+        int[] B = {1, 3, 4, 2, 5, 6, 3, 2, 7, 8, 4, 1, 9, 5}; // input
+        int n = B.length;
+        System.out.println("Duplicates: " + findDuplicates(B, n));  // [3, 2, 4, 1, 5]
+    }
+}
+
+(You can also implement this solution with HashSet)
+
+#3.25
+
+public class SinglyLinkedList<E> {
+    private static class Node<E> {
+        private E element;
+        private Node<E> next;
+        
+        public Node(E e, Node<E> n) {
+            element = e;
+            next = n;
+        }
+    }
+    
+    private Node<E> head = null;
+    private Node<E> tail = null;
+    private int size = 0;
+
+    public void addLast(E e) { 
+        Node<E> newest = new Node<>(e, null);
+        if (tail != null) {
+            tail.next = newest;
+        } else {
+            head = newest;
+        }
+        tail = newest;
+        size++;
+    }
+
+    public static <E> SinglyLinkedList<E> concatenate(SinglyLinkedList<E> L, SinglyLinkedList<E> M) {
+        if (L.head == null) return M; // if L empty — return M
+        if (M.head == null) return L; // if M empty — return L
+
+        L.tail.next = M.head; 
+        L.tail = M.tail; 
+        L.size += M.size; 
+
+        return L; 
+    }
+
+    public void printList() { 
+        Node<E> current = head;
+        while (current != null) {
+            System.out.print(current.element + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList<Integer> L = new SinglyLinkedList<>();
+        L.addLast(1);
+        L.addLast(2);
+        L.addLast(3);
+
+        SinglyLinkedList<Integer> M = new SinglyLinkedList<>();
+        M.addLast(4);
+        M.addLast(5);
+        M.addLast(6);
+
+        System.out.println("L before concatenation:");
+        L.printList();
+
+        System.out.println("M before concatenation:");
+        M.printList();
+
+        SinglyLinkedList<Integer> LPrime = concatenate(L, M);
+
+        System.out.println("L' after concatenation:");
+        LPrime.printList();
+    }
+}
+
+#3.26 — Doubly Linked List
+
+#3.28
+
+public class SinglyLinkedList<E> {
+    private static class Node<E> {
+        private E element;
+        private Node<E> next;
+
+        public Node(E e, Node<E> n) {
+            element = e;
+            next = n;
+        }
+    }
+
+    private Node<E> head = null;
+
+    // reverse
+    public void reverse() {
+        Node<E> prev = null;
+        Node<E> current = head;
+        Node<E> next = null;
+
+        while (current != null) {
+            next = current.next; 
+            current.next = prev; 
+            prev = current; 
+            current = next; 
+        }
+        head = prev; 
+    }
+
+    public void addLast(E e) {
+        Node<E> newest = new Node<>(e, null);
+        if (head == null) {
+            head = newest;
+        } else {
+            Node<E> temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newest;
+        }
+    }
+
+    public void printList() {
+        Node<E> current = head;
+        while (current != null) {
+            System.out.print(current.element + " → ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    // main
+    public static void main(String[] args) {
+        SinglyLinkedList<Integer> L = new SinglyLinkedList<>();
+        L.addLast(1);
+        L.addLast(2);
+        L.addLast(3);
+        L.addLast(4);
+        L.addLast(5);
+
+        System.out.println("Original List:");
+        L.printList();
+
+        L.reverse();
+
+        System.out.println("Reversed List:");
+        L.printList();
+    }
+}
+
