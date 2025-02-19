@@ -1,0 +1,5 @@
+
+-- Recursion --
+Write out the recursive method for binary search. Write out the argument that the complexity is O(log(n))
+
+Write down the recursive relationships used to create our two methods to calculate the fibonacci numbers. How did using an auxiliary variable make our code faster?
