@@ -1,0 +1,196 @@
+#Q5.22
+
+public class Recursive {
+
+    public static boolean findPair(int[] A, int left, int right, int k) {
+        // Base case: No valid pair
+        if (left >= right) return false;
+
+        int sum = A[left] + A[right];
+
+        if (sum == k) {
+            System.out.println("Pair found: (" + A[left] + ", " + A[right] + ")");
+            return true;
+        }
+        
+        if (sum < k) {
+            return findPair(A, left + 1, right, k); // Move left pointer
+        } else {
+            return findPair(A, left, right - 1, k); // Move right pointer
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] A = {1, 3, 5, 7, 9, 11, 15}; // Sorted array
+        int k = 10;
+
+        if (!findPair(A, 0, A.length - 1, k)) {
+            System.out.println("No pair found.");
+        }
+    }
+}
+
+#Q5.24
+
+public class Recursive2 {
+
+    // Recursive function to compute Isabel's sum
+    public static int isabelSum(int[] A) {
+        int n = A.length;
+
+        // Base case: if only one element remains, return it
+        if (n == 1) {
+            return A[0];
+        }
+
+        // Create an array B of half the size
+        int[] B = new int[n / 2];
+
+        // Compute B[i] = A[2i] + A[2i + 1]
+        for (int i = 0; i < B.length; i++) {
+            B[i] = A[2 * i] + A[2 * i + 1];
+        }
+
+        // Recursively compute the sum on the new array B
+        return isabelSum(B);
+    }
+
+    public static void main(String[] args) {
+        int[] A = {1, 2, 3, 4, 5, 6, 7, 8}; // Array of size power of 2
+
+        int result = isabelSum(A);
+        System.out.println("Final Sum: " + result);
+    }
+}
+
+#Q8.2
+
+The worst-case running time for the depth-first search (DFS) algorithm occurs when the tree is highly unbalanced, such as a linear tree (a degenerate tree). 
+In such a case, DFS will have to traverse all nodes in a straight path, leading to a time complexity of O(n), where n is the number of nodes.
+
+#8.24
+
+Parenthesized Representation: - (/ (* (+ 3, 1), 3), (+ (- 9, 5), 2)), (+ (* 3, (- 7, 4)), 6))
+
+Code: (Implemented using Position)
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Position<E> {
+    private E element;
+    private Position<E> left, right;
+
+    public Position(E element) {
+        this.element = element;
+        this.left = null;
+        this.right = null;
+    }
+
+    public E getElement() {
+        return element;
+    }
+
+    public Position<E> getLeft() {
+        return left;
+    }
+
+    public Position<E> getRight() {
+        return right;
+    }
+
+    public void setLeft(Position<E> left) {
+        this.left = left;
+    }
+
+    public void setRight(Position<E> right) {
+        this.right = right;
+    }
+}
+
+class BinaryTree<E> {
+    private Position<E> root;
+
+    public BinaryTree(Position<E> root) {
+        this.root = root;
+    }
+
+    public Position<E> root() {
+        return root;
+    }
+
+    public boolean isInternal(Position<E> p) {
+        return p.getLeft() != null || p.getRight() != null;
+    }
+
+    public List<Position<E>> children(Position<E> p) {
+        List<Position<E>> children = new ArrayList<>();
+        if (p.getLeft() != null) children.add(p.getLeft());
+        if (p.getRight() != null) children.add(p.getRight());
+        return children;
+    }
+
+    // Parenthesization method from Code Fragment 8.26
+    public static <E> void parenthesize(BinaryTree<E> T, Position<E> p) {
+        System.out.print(p.getElement());
+        if (T.isInternal(p)) {
+            boolean firstTime = true;
+            for (Position<E> c : T.children(p)) {
+                System.out.print(firstTime ? " (" : ", ");
+                firstTime = false;
+                parenthesize(T, c);
+            }
+            System.out.print(")");
+        }
+    }
+}
+
+public class ExpressionTreePrinter {
+    public static void main(String[] args) {
+        // Constructing the expression tree as per Figure 8.6
+        Position<String> root = new Position<>("-");
+
+        Position<String> leftSubtree = new Position<>("/");
+        Position<String> rightSubtree = new Position<>("+");
+
+        root.setLeft(leftSubtree);
+        root.setRight(rightSubtree);
+
+        // Left subtree (/)
+        Position<String> leftLeft = new Position<>("*");
+        Position<String> leftRight = new Position<>("+");
+        leftSubtree.setLeft(leftLeft);
+        leftSubtree.setRight(leftRight);
+
+        // Left subtree of (*) (3+1) * 3
+        Position<String> plus = new Position<>("+");
+        leftLeft.setLeft(plus);
+        leftLeft.setRight(new Position<>("3"));
+        plus.setLeft(new Position<>("3"));
+        plus.setRight(new Position<>("1"));
+
+        // Right subtree of (/)
+        Position<String> minus = new Position<>("-");
+        leftRight.setLeft(minus);
+        leftRight.setRight(new Position<>("2"));
+        minus.setLeft(new Position<>("9"));
+        minus.setRight(new Position<>("5"));
+
+        // Right subtree (+)
+        Position<String> rightLeft = new Position<>("*");
+        rightSubtree.setLeft(rightLeft);
+        rightSubtree.setRight(new Position<>("6"));
+
+        Position<String> minus2 = new Position<>("-");
+        rightLeft.setLeft(new Position<>("3"));
+        rightLeft.setRight(minus2);
+        minus2.setLeft(new Position<>("7"));
+        minus2.setRight(new Position<>("4"));
+
+        BinaryTree<String> tree = new BinaryTree<>(root);
+        System.out.print("Parenthesized Representation: ");
+        BinaryTree.parenthesize(tree, tree.root());
+        System.out.println();
+    }
+}
+
