@@ -133,12 +133,24 @@ Reading: 10.2, 11.1
 
 #### Quiz 5 (Maps)
 
-TBD
+Maps and hash maps. 
+
+In textbook: Qs 10.1, 3, 33, 61. Read about the set ADT (10.5.1) 10.25, 26, 27, 28
 
 ### Class 14, Mar 10
 
 #### Midterm (two-sided cheat sheet allowed)
 
+### Class 15, Mar 12
 
+Finish Hash map implementations. Fast implementation of entrySet. Start collision resolution.
 
+Reading: 10.2
 
+### Section 8, Mar 14
+
+#### Quiz 6 (Maps and hash functions)
+
+Maps and hash maps. 
+
+In textbook: Qs 10.4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 29, 41
