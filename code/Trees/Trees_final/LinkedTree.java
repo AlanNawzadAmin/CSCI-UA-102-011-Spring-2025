@@ -1,55 +1,46 @@
 package Trees_final;
 import LinkedList_final.DoublyLinkedList;
-import LinkedList_final.Position;
-
-import LinkedList_final.PositionList;
+import LinkedList_final.List;
 import StackQueues.Stack;
 import StackQueues.LinkedStack;
 import StackQueues.Queue;
 import StackQueues.LinkedQueue;
 
 public class LinkedTree<E> implements Tree<E>{
-	private static class Node<E> implements Position<E>{
+	private class Node implements Position<E>{
 		private E element;
 		private DoublyLinkedList<Position<E>> children;
-		private Node<E> parent;
+		private Node parent;
 		
-		public Node(E element, Node<E> parent) {
+		public Node(E element, Node parent) {
 			this.element = element;
 			this.parent = parent;
 			this.children = new DoublyLinkedList<Position<E>>();
 		}
 		
 		public E getElement(){return element;}
-		public Node<E> getParent() {return parent;}
-		public PositionList<Position<E>> getChildren() {return children;}
+		public Node getParent() {return parent;}
+		public List<Position<E>> getChildren() {return children;}
 	}
 	
-	private Node<E> validate_position(Position<E> p){
-		if(p instanceof Node<E>)
-			return (Node<E>)p;
-		else
-			throw new IllegalArgumentException();
-	}
-	
-	Node<E> root;
+	Node root;
 	int size;
 
 	public LinkedTree(E root_element) {
-		root = new Node<E>(root_element, null);
+		root = new Node(root_element, null);
 	}
 	
 	public Position<E> root(){
 		return root;
 	}
 	public Position<E> parent(Position<E> p){
-		return validate_position(p).getParent();
+		return ((Node)p).getParent();
 	};
-	public PositionList< Position<E> >  children(Position<E> p){
-		return validate_position(p).getChildren();
+	public List< Position<E> >  children(Position<E> p){
+		return ((Node)p).getChildren();
 	};
 	public int numChildren(Position<E> p) {
-		return validate_position(p).getChildren().size();
+		return ((Node)p).getChildren().size();
 	}
 	public boolean isInternal(Position<E> p) {
 		return numChildren(p) != 0;
@@ -70,10 +61,11 @@ public class LinkedTree<E> implements Tree<E>{
 	
 	public int height(Position<E> p) {
 		int h = 0;
-		for (Position<E> child: children(p)) {
-			h = Math.max(h, height(child));
+		List< Position<E> > ch = children(p);
+		for (int i=0;i< ch.size(); i++) {
+			h = Math.max(h, height(ch.getAtIndex(i)));
 		}
-		return h+1;
+		return h;
 	}
 	
 	private boolean depthFirstSearch(E element){
@@ -82,8 +74,9 @@ public class LinkedTree<E> implements Tree<E>{
 		while (stack.size() > 0) {
 			Position<E> next_pos = stack.pop();
 			if (next_pos.getElement() == element) return true;
-			for (Position<E> child: children(next_pos)) {
-				stack.push(child);
+			List<Position<E>> ch = children(next_pos);
+			for (int j=0; j<ch.size(); j++) {
+				stack.push(ch.getAtIndex(j));
 			}
 		}
 		return false;
@@ -95,43 +88,46 @@ public class LinkedTree<E> implements Tree<E>{
 		while (queue.size() > 0) {
 			Position<E> next_pos = queue.dequeue();
 			if (next_pos.getElement() == element) return true;
-			for (Position<E> child: children(next_pos)) {
-				queue.enqueue(child);
+			List<Position<E>> ch = children(next_pos);
+			for (int j=0; j<ch.size(); j++) {
+				queue.enqueue(ch.getAtIndex(j));
 			}
 		}
 		return false;
 	}
 	
 //	Using recursion
-	private PositionList<Position<E>> positionsRecursive(Position<E> p, PositionList<Position<E>> list){
+	private List<Position<E>> positionsRecursive(Position<E> p, List<Position<E>> list){
 		list.addLast(p);
-		for (Position<E> child: children(p)) {
-			positionsRecursive(child, list);
+		List<Position<E>> children = children(p);
+		for (int i=0; i<children.size(); i++) {
+			positionsRecursive(children.getAtIndex(i), list);
 		}
 		return list;
 	}
 	
-	private PositionList<Position<E>> positionsRecursive(Position<E> p){
-		PositionList<Position<E>> list = new DoublyLinkedList<Position<E>>();
+	private List<Position<E>> positionsRecursive(Position<E> p){
+		List<Position<E>> list = new DoublyLinkedList<Position<E>>();
 		return positionsRecursive(p, list);
 	}
 	
 //	Using stacks
-	private PositionList<Position<E>> positions(Position<E> p){
-		PositionList<Position<E>> pos = new DoublyLinkedList<Position<E>>();
+	private List<Position<E>> positions(Position<E> p){
+		List<Position<E>> pos = new DoublyLinkedList<Position<E>>();
 		Stack<Position<E>> stack = new LinkedStack<Position<E>>();
 		stack.push(p);
 		while (stack.size() > 0) {
 			Position<E> next_pos = stack.pop();
 			pos.addLast(next_pos);
-			for (Position<E> child: children(next_pos)) {
-				stack.push(child);
+			List<Position<E>> ch = children(next_pos);
+			for (int j=0; j<ch.size(); j++) {
+				stack.push(ch.getAtIndex(j));
 			}
 		}
 		return pos;
 	}
 	
-	public PositionList<Position<E>> positions(){
+	public List<Position<E>> positions(){
 		return positions(root);
 	}
 }

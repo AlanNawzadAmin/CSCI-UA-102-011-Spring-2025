@@ -1,8 +1,7 @@
 package Trees_final;
 
 import LinkedList_final.DoublyLinkedList;
-import LinkedList_final.Position;
-import LinkedList_final.PositionList;
+import LinkedList_final.List;
 import StackQueues.LinkedQueue;
 import StackQueues.LinkedStack;
 import StackQueues.Queue;
@@ -39,8 +38,8 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	public Position<E> parent(Position<E> p){
 		return ((Node)p).getParent();
 	};
-	public PositionList< Position<E> >  children(Position<E> p){
-		PositionList< Position<E> > list = new DoublyLinkedList< Position<E> >();
+	public List< Position<E> >  children(Position<E> p){
+		List< Position<E> > list = new DoublyLinkedList< Position<E> >();
 		if (((Node)p).getLeft() != null) list.addLast(((Node)p).getLeft());
 		if (((Node)p).getRight() != null) list.addLast(((Node)p).getRight());
 		return list;
@@ -79,7 +78,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	}
 	
 //	Using recursion
-	private PositionList<Position<E>> preorderPositions(Position<E> p, PositionList<Position<E>> list){
+	private List<Position<E>> preorderPositions(Position<E> p, List<Position<E>> list){
 		if (p == null) return list;
 		list.addLast(p);
 		preorderPositions(((Node)p).getLeft(), list);
@@ -87,12 +86,12 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		return list;
 	}
 	
-	private PositionList<Position<E>> preorderPositions(Position<E> p){
-		PositionList<Position<E>> list = new DoublyLinkedList<Position<E>>();
+	private List<Position<E>> preorderPositions(Position<E> p){
+		List<Position<E>> list = new DoublyLinkedList<Position<E>>();
 		return preorderPositions(p, list);
 	}
 	
-	private PositionList<Position<E>> postorderPositions(Position<E> p, PositionList<Position<E>> list){
+	private List<Position<E>> postorderPositions(Position<E> p, List<Position<E>> list){
 		if (p == null) return list;
 		postorderPositions(((Node)p).getLeft(), list);
 		postorderPositions(((Node)p).getRight(), list);
@@ -100,12 +99,12 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		return list;
 	}
 	
-	private PositionList<Position<E>> postorderPositions(Position<E> p){
-		PositionList<Position<E>> list = new DoublyLinkedList<Position<E>>();
+	private List<Position<E>> postorderPositions(Position<E> p){
+		List<Position<E>> list = new DoublyLinkedList<Position<E>>();
 		return postorderPositions(p, list);
 	}
 	
-	private PositionList<Position<E>> inorderPositions(Position<E> p, PositionList<Position<E>> list){
+	private List<Position<E>> inorderPositions(Position<E> p, List<Position<E>> list){
 		if (p == null) return list;
 		inorderPositions(((Node)p).getLeft(), list);
 		list.addLast(p);
@@ -113,12 +112,12 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		return list;
 	}
 	
-	private PositionList<Position<E>> inorderPositions(Position<E> p){
-		PositionList<Position<E>> list = new DoublyLinkedList<Position<E>>();
+	private List<Position<E>> inorderPositions(Position<E> p){
+		List<Position<E>> list = new DoublyLinkedList<Position<E>>();
 		return inorderPositions(p, list);
 	}
 	
-	public PositionList<Position<E>> positions(){
+	public List<Position<E>> positions(){
 		return preorderPositions(root);
 	}
 }
