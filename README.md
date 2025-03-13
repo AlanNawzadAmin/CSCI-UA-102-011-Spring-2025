@@ -154,3 +154,9 @@ Reading: 10.2
 Maps and hash maps. 
 
 In textbook: Qs 10.4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 29, 41
+
+### Class 16, Mar 17
+
+#### Assignment 5 (Hash maps) due
+
+TBD
