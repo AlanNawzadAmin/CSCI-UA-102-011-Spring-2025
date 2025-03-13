@@ -1,0 +1,163 @@
+#8.18
+Preorder Traversal (Root → Left → Right)
+
+/ * + 3 1 3 + - 9 5 2 - + * 3 - 7 4 6
+
+#8.19
+Postorder Traversal (Left → Right → Root)
+
+3 1 + 3 * 9 5 - 2 + / 3 7 4 - * 6 + -
+
+#8.20
+1) Preorder and Postorder being the same: Not possible for any ordered tree with more than one node. The root is always visited first in preorder and last in postorder, making the sequences different.
+2) Preorder being the reverse of Postorder: Possible, but only in degenerate trees (each node has at most one child). In these trees, the postorder traversal will be the exact reverse of the preorder traversal.
+
+#8.21
+1) Preorder and Postorder being the same: Not possible in any proper binary tree with more than one node. The root is always visited first in Preorder and last in Postorder, making the sequences different.
+2) Preorder being the reverse of Postorder: Also not possible in any proper binary tree with more than one node. The structural constraints of proper binary trees prevent the traversals from being exact reverses.
+
+#8.22
+      E
+     / \
+    X   N
+   / \
+  A   U
+ / \
+M   F
+
+#8.23
+Step-by-step queue update:
+{1}
+{2, 3, 4}
+{3, 4, 5, 6}
+{4, 5, 6, 7, 8, 9, 10, 11}
+{5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+{6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+{7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+{8, 9, 10, 11, 12, 13, 14, 15, 16}
+{9, 10, 11, 12, 13, 14, 15, 16}
+{10, 11, 12, 13, 14, 15, 16}
+{11, 12, 13, 14, 15, 16}
+{12, 13, 14, 15, 16}
+{13, 14, 15, 16}
+{14, 15, 16}
+{15, 16}
+{16}
+{} (Traversal complete)
+
+#8.42
+package recitation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class TreeNode {
+    int value;
+    List<TreeNode> children;
+
+    public TreeNode(int value) {
+        this.value = value;
+        this.children = new ArrayList<>();
+    }
+}
+
+public class treeheight {
+    
+    public static int computeHeight(TreeNode node) {
+        if (node == null) {
+            return -1; // Base case: Null node has height -1
+        }
+        if (node.children.isEmpty()) {
+            System.out.println("Node " + node.value + ", Height: 0");
+            return 0;
+        }
+
+        // Compute height as 1 + max height among children
+        int maxHeight = 0;
+        for (TreeNode child : node.children) {
+            maxHeight = Math.max(maxHeight, computeHeight(child));
+        }
+
+        int height = 1 + maxHeight;
+        System.out.println("Node " + node.value + ", Height: " + height);
+        return height;
+    }
+
+    public static void main(String[] args) {
+        // Example tree setup
+        TreeNode root = new TreeNode(1);
+        TreeNode child1 = new TreeNode(2);
+        TreeNode child2 = new TreeNode(3);
+        TreeNode child3 = new TreeNode(4);
+        TreeNode child4 = new TreeNode(5);
+
+        root.children.add(child1);
+        root.children.add(child2);
+        child1.children.add(child3);
+        child1.children.add(child4);
+
+        // Compute and print heights
+        computeHeight(root);
+    }
+}
+
+#8.45
+1. PreorderNext(p)
+
+public static TreeNode preorderNext(TreeNode p) {
+    if (p.left != null) return p.left;  
+    if (p.right != null) return p.right; 
+
+    TreeNode current = p;
+    while (current.parent != null) {  
+        if (current.parent.left == current && current.parent.right != null)
+            return current.parent.right;
+        current = current.parent;
+    }
+    return null; 
+}
+
+Worst Case: O(h) where h is the height of the tree
+
+2. inorderNext(p)
+
+public static TreeNode inorderNext(TreeNode p) {
+    if (p.right != null) {  
+        TreeNode next = p.right;
+        while (next.left != null)
+            next = next.left;
+        return next;
+    }
+
+    TreeNode current = p;
+    while (current.parent != null) {  
+        if (current.parent.left == current)
+            return current.parent;
+        current = current.parent;
+    }
+    return null; 
+}
+
+Worst Case: O(h) where h is the height of the tree
+
+3. postorderNext(p)
+
+public static TreeNode postorderNext(TreeNode p) {
+    if (p.parent == null) return null; 
+
+    if (p.parent.left == p) {
+        if (p.parent.right != null) {  
+            TreeNode next = p.parent.right;
+            while (next.left != null || next.right != null) {
+                if (next.left != null) next = next.left;
+                else next = next.right;
+            }
+            return next;
+        }
+        return p.parent;  // If no right child, return the parent
+    }
+    
+    return p.parent; // Case 3: p is the right child, return parent
+}
+
+Worst Case: O(h) where h is the height of the tree
