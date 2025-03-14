@@ -159,4 +159,34 @@ In textbook: Qs 10.4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 29, 41
 
 #### Assignment 5 (Hash maps) due
 
-TBD
+Finish collision resolution. Binary search trees.
+
+In textbook: 11.1
+
+### Class 17, Mar 19
+
+Getting, adding and removing from BSTs. Implementing BSTs
+
+Reading: 11.1, 11.2
+
+### Section 9, Mar 21
+#### Quiz 7 (Binary search trees)
+
+Binary search trees
+
+In textbook: Qs 11.1, 2, 3, 4, 33
+
+### Enjoy your spring break!
+
+### Class 18, Mar 31
+
+Adding to AVL trees
+
+Reading: 11.3.
+
+### Class 19, April 2
+#### Assignment 5 (Using BSTs)  due
+
+AVL removal. Implementing AVL trees.
+
+Reading: 11.3.
