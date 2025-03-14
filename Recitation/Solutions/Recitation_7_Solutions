@@ -1,0 +1,37 @@
+#Q10.25
+METHOD removeAll(S)
+    FOR each element in S  ⬅ (Using an iterator over S)
+        IF A.contains(element) THEN
+            A.remove(element)
+        ENDIF
+    END FOR
+END METHOD
+
+#Q10.26
+METHOD retainAll(S)
+    CREATE an iterator over A
+    FOR each element in A  ⬅ (Using an iterator)
+        IF S.contains(element) == FALSE THEN
+            A.remove(element)
+        ENDIF
+    END FOR
+END METHOD
+
+#Q10.27
+Since each element in T is added to S individually, and each insertion takes O(log n), the total time complexity of S.addAll(T) is: O(mlogn)
+This assumes S.add(x) takes O(log n) time per insertion, which holds for skip lists
+
+#Q10.29
+Since we iterate through T once and perform O(1) operations for each element, the total expected time complexity is: O(m)
+
+#Q10.33
+Implementation of putIfAbsent(k, v):
+
+public void putIfAbsent(K key, V value) {
+    for (Entry<K, V> entry : table) {  // Iterate over the table (unsorted list)
+        if (entry.getKey().equals(key)) {
+            return;  // Key already exists, do nothing
+        }
+    }
+    table.add(new MapEntry<>(key, value));  // Insert new entry if key is absent
+}
