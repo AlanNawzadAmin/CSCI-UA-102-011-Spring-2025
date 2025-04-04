@@ -185,8 +185,58 @@ Adding to AVL trees
 Reading: 11.3.
 
 ### Class 19, April 2
-#### Assignment 5 (Using BSTs)  due
+#### Assignment 6 (Using BSTs)  due
 
-AVL removal. Implementing AVL trees.
+Implementing AVL trees.
 
 Reading: 11.3.
+
+### Section 10, April 4
+#### Quiz 8 (BST implementation or AVL tree addition)
+
+BST implementation and AVL tree addition
+
+In textbook: 11.5, 8, 29
+
+
+### Class 20, April 7
+
+Quadratic sorts. O(nlog n) efficiency proof.
+
+Reading: 9.1, 9.2, 9.4.1, [bubble sort](https://en.wikipedia.org/wiki/Bubble_sort), [bogo sort](https://en.wikipedia.org/wiki/Bogosort), 12.3.1
+
+### Class 21, April 9
+
+Bucketsort, and comparison of sorting algorithms.
+
+Reading: 12.3.2, 12.4
+
+### Section 11, April 11
+#### Quiz 9 (Sorting)
+
+Sorting
+
+In textbook: 12.6, 7, 26 -- do these questions for all the sorting algorithms we have covered
+
+
+### Class 22, April 14
+#### Assignment 7 (Sorting with priority queues)  due
+Mergesort.
+
+Reading: 12.1
+
+### Class 23, April 16
+
+Heaps and Heapsort
+
+Reading: 9.3, 9.4
+
+### Section 12, April 18
+#### Quiz 10 (Efficient Sorting)
+
+Efficient Sorting
+
+In textbook: 12.6, 7, 18, 20-23, 35-37, 39, 42, 43, 46, 47 (answer for the algorithms we've covered)
+
+### Class 24, April 21
+#### Assignment 8 (Radix sort)  due
