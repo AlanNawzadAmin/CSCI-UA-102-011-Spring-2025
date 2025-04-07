@@ -1,0 +1,57 @@
+Q11.1
+
+Right Skewed BST:
+  1:A
+     \
+      2:B
+         \
+          3:C
+             \
+              4:D
+                 \
+                  5:E
+
+Q11.2
+
+       30
+      /  \
+    24    40
+   /  \     \
+ 11   26     58
+   \         /
+   13      48
+
+Q11.3
+
+For n = 3: C3 = 1/4(6C3) = 1/4*20 = 5 (Unique BST)
+
+Q11.4
+
+Let’s use keys: 2, 1, 3 vs. 1, 3, 2!
+
+Case 1: 
+    2
+   / \
+  1   3
+
+Case 2:
+    1
+     \
+      3
+     /
+    2
+
+These trees are structurally different, proving Dr. Amongus is wrong.
+
+Q11.33
+
+Proof Sketch: Let’s call the path from the root to the point where search for k ends as P.
+1. Predecessor of k: largest key < k
+	•	As we go right from any node v, we know k > v.key, so we might find keys smaller than k.
+	•	Among all such nodes on the path where we went right, the one with the largest key is the largest key < k — that’s the predecessor.
+	•	So the predecessor must be on the path P, since we only see these nodes when we go right from them.
+2. Successor of k: smallest key > k
+	•	Similarly, when we go left from any node v, we know k<v.key, so v.key>k.
+	•	Among all such nodes where we went left, the one with the smallest key is the successor.
+	•	So the successor must also be on the path P, because we passed through that node on our way down.
+Therefore, both the predecessor and successor of k lie on the search path for k in BST T.
