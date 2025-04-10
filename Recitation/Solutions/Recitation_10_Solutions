@@ -1,0 +1,45 @@
+Q11.5
+
+The structure of an AVL tree depends on the order of insertion due to rotations that occur to maintain balance. Even with the same set of keys, inserting them in different orders can cause different rotations, resulting in different tree shapes.
+
+Q11.8
+
+        62
+       /  \
+     50    78
+    /  \     \
+  44   54     88
+ / \   / 
+17 48 52
+
+Q11.29
+
+Sorting Strategy:
+1. Insert all n elements into the tree.
+	◦	Each insertion: O(log n)
+	◦	Total time: O(n log n)
+2. Perform in-order traversal to collect elements in sorted order.
+	◦	In-order traversal of a BST gives sorted output.
+	◦	Time: O(n)
+Total Time Complexity: O(nlogn)+O(n)=O(nlogn)
+
+Code:
+import java.util.*;
+public class TreeSort {
+    public static List<Integer> treeSort(List<Integer> input) {
+        TreeSet<Integer> tree = new TreeSet<>();
+  
+        for (int num : input) {
+            tree.add(num);
+        }
+
+        return new ArrayList<>(tree);
+    }
+
+    public static void main(String[] args) {
+        List<Integer> input = Arrays.asList(6, 4, 7, 1, 9, 3);
+        List<Integer> sorted = treeSort(input);
+
+        System.out.println("Sorted: " + sorted);
+    }
+}
