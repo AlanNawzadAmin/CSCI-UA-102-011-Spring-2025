@@ -221,9 +221,9 @@ In textbook: 12.6, 7, 26 -- do these questions for all the sorting algorithms we
 
 ### Class 22, April 14
 #### Assignment 7 (Sorting with priority queues)  due
-Mergesort.
+Mergesort. Quicksort.
 
-Reading: 12.1
+Reading: 12.1, 12.2
 
 ### Class 23, April 16
 
@@ -231,12 +231,49 @@ Heaps and Heapsort
 
 Reading: 9.3, 9.4
 
-### Section 12, April 18
+### Class 24, April 18
+
+Heaps and Heapsort continued. Start Graphs
+
+Reading: 9.3, 9.4, 14.1, 14.2
+
+### Section 12, April 21
+#### Assignment 8 (Radix sort)  due
 #### Quiz 10 (Efficient Sorting)
 
 Efficient Sorting
 
-In textbook: 12.6, 7, 18, 20-23, 35-37, 39, 42, 43, 46, 47 (answer for the algorithms we've covered)
+In textbook: 12.6, 7, 18, 20-23, 35-37, 39, 42, 43, 46, 47
 
-### Class 24, April 21
-#### Assignment 8 (Radix sort)  due
+### Class 25, April 23
+
+### Guest lecture from Evan on Graph implementations
+
+### Section 13, April 28
+#### Assignment 9 (Heaps) due
+#### Quiz 11 (Graphs)
+
+Graphs
+
+In textbook: 14.1-11, 38
+
+### Class 26, April 30
+
+Graph implementations cont. Searching graphs.
+
+Reading: 14.1, 14.2, 14.3
+
+### Section 14, May 2
+#### Quiz 12 (Graph search)
+
+Makeup quizzes (make sure you've filled out the form in the syllabus!)!
+
+Textbook Qs for graph search: 14.12-16, 39, 42-44
+
+### Class 27, May 5
+#### Assignment 10 (Graph implementations) due
+
+Searching graphs.
+
+Reading: 14.3
+
