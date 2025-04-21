@@ -221,19 +221,19 @@ In textbook: 12.6, 7, 26 -- do these questions for all the sorting algorithms we
 
 ### Class 22, April 14
 #### Assignment 7 (Sorting with priority queues)  due
-Mergesort. Quicksort.
+Mergesort. Heaps and Heapsort
 
-Reading: 12.1, 12.2
+Reading: 12.1. 9.3, 9.4
 
 ### Class 23, April 16
 
-Heaps and Heapsort
+Heaps and Heapsort continued.
 
 Reading: 9.3, 9.4
 
 ### Class 24, April 18
 
-Heaps and Heapsort continued. Start Graphs
+Graphs and their implementations.
 
 Reading: 9.3, 9.4, 14.1, 14.2
 
@@ -247,7 +247,9 @@ In textbook: 12.6, 7, 18, 20-23, 35-37, 39, 42, 43, 46, 47
 
 ### Class 25, April 23
 
-### Guest lecture from Evan on Graph implementations
+### Guest lecture from Evan on Quicksort
+
+Reading: 12.2
 
 ### Section 13, April 28
 #### Assignment 9 (Heaps) due
