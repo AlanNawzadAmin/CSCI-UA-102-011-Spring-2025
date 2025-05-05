@@ -1,0 +1,75 @@
+Quizzes:
+
+1:
+	Write a method void evenSwap(PositionList<Integer> list) that goes through every position of the given PositionList starting from the first; at every position, if the element at the position is odd while the following element is even, the elements are swapped. The implementation should run in linear
+time.
+For example, given the list:
+7, 6, 4, 10, 2
+The swaps would proceed as follows:
+• Swap 7 and 6 → 6, 7, 4, 11, 2
+• Swap 7 and 4 → 6, 4, 7, 11, 2
+• Don’t swap 7 and 10 → 6, 4, 7, 11, 2
+• Swap 11 and 2 → 6, 4, 7, 2, 11
+
+2:
+	(a) Implement the following method: public static <E> boolean search(Queue<E> queue, E element). Ensure that when your method returns, the queue remains unchanged from its original state. You may initialize other stacks and queues.
+(b) If the enqueue and dequeue operations have an asymptotic complexity of O(1) for a particular implementation, what are the best and worst case asymptotic complexities of this method?
+
+3:
+	Define the sequence with initial conditions X_1 = 1, X_2 = 2, X_3 = 3, and recurrence relation: X_{n+2} = X_{n+1} - X_n * X_{n−1}. Write a recursive method to calculate the n-th term of this sequence. Ensure that the method
+runs in linear time.
+
+4:
+	Implement a recursive method that counts how many times an element appears in a binary tree times the height of each appearance public heightCount(Tree<E> tree, E element). For example, if element appears twice in the tree at nodes of heights 2 and 5 then heightCount will be 7. Hint: use height as an auxiliary variable.
+
+5:
+	Implement a method public PositionList<E> appearTwice(PositionList<E> list) which returns a list of all elements in list which appear exactly twice. Make sure to use UnsortedMap!
+
+6:
+	public class sillyList extends DoublyLinkedList<Integer>{
+public boolean equals(sillyList<E> list2){
+if (size != list2.size()) return false;
+boolean equal_at_even = true;
+for (int i = 0; i < list2.size()/2; i++){
+equal_at_even = equal_at_even && (getAtIndex(2*i) == list2.getAtIndex(2*i));
+}
+Integer prod1 = 0;
+Integer prod2 = 0;
+for (int i = 0; i < list2.size(); i++){
+prod1 = prod1 * getAtIndex(i);
+prod2 = prod2 * list2.getAtIndex(i);
+}
+return equal_first_half && (sum1 == sum2);
+}
+}
+(a) (2 points) What does equals check? Write two sillyList that are equal according to this method but are not equal as DoublyLinkedLists.
+(b) (8 points) Based on this implementation of equals, implement a sensible version of hashCode().
+
+7:
+	(a) (1 point) Draw a binary search tree of entries with keys 1, 2, . . . , 15 that has height 5.
+(b) (2 points) In what order do we have to call put(key, value) on these entries to get the tree you drew?
+(c) (7 points) Remove the entries in the order you added them (read this part carefully)). Redraw the tree after each removal. i.e., if your answer to (b) was put(1, V); put(2, V); ..., then please perform remove(1); remove(2); ... and redraw the tree at each step.
+
+8: 
+	(a) Draw two AVL trees that have the same elements but in a different topology. Describe what order your would have to add the elements to arrive at each AVL tree.
+	(b) Add the numbers 1, 15, 2, 14, 3, 13, 4, 12, 5, 11, 6, 10, 7, 9, 8, 0 to an AVL tree. Redraw the tree after each addition.
+	(c) remove those numbers in the same order. Redraw the tree after each removal.
+
+9:
+	Write a method int median(int[] array) which returns the median of the array. Make sure your method runs in O(n * logn) time.
+
+10:
+	(1) (2 points) Write a method to calculate the height of a heap:
+public int height().
+(2) (5 points) What positions in a heap can the largest element be in, in terms of height and size?
+(3) (3 points) Implement void max() that returns the maximum entry in a heap of integers. Make sure it checks as few elements as possible.
+
+11:
+	You will write a method public boolean aTob(V a, V b) that returns true if these are two vertices that store elements a and b that are connected by an edge going from the vertex that stores a to the one that stores b. Say we’ve implemented a graph with n nodes and m edges using EdgeListGraph.
+	(a) Write a method that is very efficient when m is very small. Hint: search through edges! What is the efficiency of your method?
+	(b) Write a method that is very efficient when n is smaller than m and there are no two vertices that both hold a or both hold b. Hint: search through vertices! What is the efficiency of your method?
+
+12:
+	Let’s say we want to write a method that finds a vertex with maximum inDegree ```public Vertex<V> maxInDegree()```. Say we’ve implemented a graph with n nodes and m edges using EdgeListGraph.
+	a) (3 points) One way to do this is to loop through the list vertices and call inDegree on every vertex. What is the worst case asymptotic computational complexity of such a method?
+	b) (7 points) Write a more efficient implementation by initializing a Map<Vertex<V>, Integer> that counts the number of edges starting at every vertex and looping through the list edges. What is the worst case asymptotic computational complexity of this method?
